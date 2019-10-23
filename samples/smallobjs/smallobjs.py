@@ -12,6 +12,8 @@ Usage: import the module (see Jupyter notebooks for examples), or run from
        the command line as such:
 
     # Train a new model starting from pre-trained COCO weights
+    python3 smallobjs.py train --dataset=/Users/amankishore/Documents/GitHub/Mask_RCNN/datasets/smallobjs/ --weights=coco
+
     python3 balloon.py train --dataset=/path/to/balloon/dataset --weights=coco
 
     # Resume training a model that you had trained earlier
@@ -66,7 +68,7 @@ class BalloonConfig(Config):
     IMAGES_PER_GPU = 2
 
     # Number of classes (including background)
-    NUM_CLASSES = 1 + 1  # Background + hospital
+    NUM_CLASSES = 1 + 1  # Background + objects
 
     # Number of training steps per epoch
     STEPS_PER_EPOCH = 30
@@ -109,7 +111,7 @@ class BalloonDataset(utils.Dataset):
         # }
         # We mostly care about the x and y coordinates of each region
         # Note: In VIA 2.0, regions was changed from a dict to a list.
-        annotations = json.load(open(os.path.join(dataset_dir, "via_export_hospital.json")))
+        annotations = json.load(open(os.path.join(dataset_dir, "via_export_smallobjs.json")))
         annotations = list(annotations.values())  # don't need the dict keys
 
         # The VIA tool saves images in the JSON even if they don't have any
