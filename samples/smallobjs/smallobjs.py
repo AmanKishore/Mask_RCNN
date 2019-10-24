@@ -14,6 +14,7 @@ Usage: import the module (see Jupyter notebooks for examples), or run from
     # Train a new model starting from pre-trained COCO weights
     python3 smallobjs.py train --dataset=/Users/amankishore/Documents/GitHub/Mask_RCNN/datasets/smallobjs/ --weights=coco
 
+    python3 smallobjs.py train --dataset=/mnt/c/Users/motion/Desktop/Aman/Mask_RCNN/datasets/smallobjs/ --weights=coco
     python3 balloon.py train --dataset=/path/to/balloon/dataset --weights=coco
 
     # Resume training a model that you had trained earlier
