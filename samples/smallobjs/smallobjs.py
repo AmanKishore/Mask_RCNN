@@ -14,6 +14,7 @@ Usage: import the module (see Jupyter notebooks for examples), or run from
     # Train a new model starting from pre-trained COCO weights
     python3 smallobjs.py train --dataset=/Users/amankishore/Documents/GitHub/Mask_RCNN/datasets/smallobjs/ --weights=coco
 
+    python3 smallobjs.py train --dataset=/mnt/c/Users/motion/Desktop/Aman/Mask_RCNN/datasets/smallobjs/ --weights=coco
     python3 balloon.py train --dataset=/path/to/balloon/dataset --weights=coco
 
     # Resume training a model that you had trained earlier
@@ -56,7 +57,11 @@ DEFAULT_LOGS_DIR = os.path.join(ROOT_DIR, "logs")
 ############################################################
 
 
+<<<<<<< HEAD
 class SmallObjsConfig(Config):
+=======
+class BalloonConfig(Config):
+>>>>>>> parent of d7084d5... MedicalObjs
     """Configuration for training on the toy  dataset.
     Derives from the base Config class and overrides some values.
     """
@@ -81,9 +86,15 @@ class SmallObjsConfig(Config):
 #  Dataset
 ############################################################
 
+<<<<<<< HEAD
 class SmallObjsDataset(utils.Dataset):
 
     def load_smallobjs(self, dataset_dir, subset):
+=======
+class BalloonDataset(utils.Dataset):
+
+    def load_balloon(self, dataset_dir, subset):
+>>>>>>> parent of d7084d5... MedicalObjs
         """Load a subset of the Balloon dataset.
         dataset_dir: Root directory of the dataset.
         subset: Subset to load: train or val
@@ -181,6 +192,7 @@ class SmallObjsDataset(utils.Dataset):
 def train(model):
     """Train the model."""
     # Training dataset.
+<<<<<<< HEAD
     dataset_train = SmallObjsDataset()
     dataset_train.load_smallobjs(args.dataset, "train")
     dataset_train.prepare()
@@ -188,6 +200,15 @@ def train(model):
     # Validation dataset
     dataset_val = SmallObjsDataset()
     dataset_val.load_smallobjs(args.dataset, "val")
+=======
+    dataset_train = BalloonDataset()
+    dataset_train.load_balloon(args.dataset, "train")
+    dataset_train.prepare()
+
+    # Validation dataset
+    dataset_val = BalloonDataset()
+    dataset_val.load_balloon(args.dataset, "val")
+>>>>>>> parent of d7084d5... MedicalObjs
     dataset_val.prepare()
 
     # *** This training schedule is an example. Update to your needs ***
@@ -197,7 +218,11 @@ def train(model):
     print("Training network heads")
     model.train(dataset_train, dataset_val,
                 learning_rate=config.LEARNING_RATE,
+<<<<<<< HEAD
                 epochs=10,
+=======
+                epochs=30,
+>>>>>>> parent of d7084d5... MedicalObjs
                 layers='heads')
 
 
@@ -288,7 +313,11 @@ if __name__ == '__main__':
                         help="'train' or 'splash'")
     parser.add_argument('--dataset', required=False,
                         metavar="/path/to/smallobjs/dataset/",
+<<<<<<< HEAD
                         help='Directory of the SmallObjs dataset')
+=======
+                        help='Directory of the Balloon dataset')
+>>>>>>> parent of d7084d5... MedicalObjs
     parser.add_argument('--weights', required=True,
                         metavar="/path/to/weights.h5",
                         help="Path to weights .h5 file or 'coco'")
@@ -317,9 +346,15 @@ if __name__ == '__main__':
 
     # Configurations
     if args.command == "train":
+<<<<<<< HEAD
         config = SmallObjsConfig()
     else:
         class InferenceConfig(SmallObjsConfig):
+=======
+        config = BalloonConfig()
+    else:
+        class InferenceConfig(BalloonConfig):
+>>>>>>> parent of d7084d5... MedicalObjs
             # Set batch size to 1 since we'll be running inference on
             # one image at a time. Batch size = GPU_COUNT * IMAGES_PER_GPU
             GPU_COUNT = 1
